@@ -5,8 +5,7 @@ import Game from './Game.js';
 class App extends Component {
 
   start() {
-    let game = new Game();
-    game.run();
+    new Game().run();
   }
 
   render() {

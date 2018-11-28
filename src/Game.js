@@ -5,7 +5,7 @@ class Game {
 
   constructor(position) {
     this.board = new Board(null);
-    this.whosMove = "Human";
+    this.whosMove = 'Human';
   }
 
   run() {
@@ -14,7 +14,7 @@ class Game {
       try {
         this.makeMove();
         if (this.board.winner()) {
-          console.log(this.whosMove + " wins!");
+          console.log(this.whosMove + ' wins!');
           return;
         }
         this.switchPlayers();
@@ -27,7 +27,7 @@ class Game {
   }
 
   makeMove() {
-    if (this.whosMove === "Human") {
+    if (this.whosMove === 'Human') {
       let move = this.promptForMove();
       this.board.move(move[0], move[1]);
     }
@@ -38,15 +38,15 @@ class Game {
   }
 
   promptForMove() {
-    console.log("Your move: (row)");
-    let row = prompt("Enter row"); // Verify that this is an int.
-    console.log("Your move: (number)");
-    let num = prompt("Enter number"); // Verify that this is an int.
+    console.log('Your move: (row)');
+    let row = prompt('Enter row'); // Verify that this is an int.
+    console.log('Your move: (number)');
+    let num = prompt('Enter number'); // Verify that this is an int.
     return [row, num];
   }
 
   switchPlayers() {
-    this.whosMove = this.whosMove === "Human" ? "Computer" : "Human";
+    this.whosMove = this.whosMove === 'Human' ? 'Computer' : 'Human';
   }
 
 }

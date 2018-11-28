@@ -20,7 +20,7 @@ class Board {
     for(let i = 0; i < this.position.length; i++) {
       let row = this.position[i];
       for(let j = startAt; j < row.length; j++) {
-        let newPosition = Object.assign([], this.position); // Clone to new object
+        let newPosition = Object.assign([], this.position); // Clone to new array.
         newPosition[i] = this.createRow(j);
         boards.push(new Board(newPosition));
       }
@@ -29,49 +29,42 @@ class Board {
   }
 
   toString() {
-    let str = "";
-    str += "---------\n";
+    let str = '---------\n';
     for (let i = 0; i < this.position.length; i++) {
-      str += "row " + (i + 1) + ": ";
+      str += 'row ' + (i + 1) + ': ';
       let row = this.position[i];
       for (let j = 0; j < row.length; j++) {
         if (row[j]) {
-          str += "O ";
+          str += 'O ';
         }
       }
-      str += "\n";
+      str += '\n';
     }
-    str += "---------";
+    str += '---------';
     return str;
   }
 
   validateMove(row, num) {
     if (row < 1 || row > this.position.length) {
-      throw new TypeError("Invalid row: please enter 1-" + this.position.length + ".");
+      throw new TypeError('Invalid row: please enter 1-' + this.position.length + '.');
     }
 
     if (num < 1) {
-      throw new TypeError("Invalid number: please enter at least 1 piece.");
+      throw new TypeError('Invalid number: please enter at least 1 piece.');
     }
 
     if (num > this.piecesLeftInRow(row - 1)) {
-      throw new TypeError("Invalid number: please enter no more than the number remaining in the row.");
+      throw new TypeError('Invalid number: please enter no more than the number remaining in the row.');
     }
 
     if (num >= this.totalPiecesLeft()) {
-      throw new TypeError("Invalid number: you may not take all remaining pieces.");
+      throw new TypeError('Invalid number: you may not take all remaining pieces.');
     }
   }
 
   piecesLeftInRow(row) {
     let boardRow = this.position[row];
-    let count = 0;
-    for (let i = 0; i < boardRow.length; i++) {
-      if (boardRow[i]) {
-        count++;
-      }
-    }
-    return count;
+    return boardRow.filter(e => e).length;
   }
 
   totalPiecesLeft() {
@@ -93,19 +86,11 @@ class Board {
 
   updateBoard(row, num) {
     let piecesLeft = this.piecesLeftInRow(row) - num;
-    let newRow = [];
-    for (let i = 0; i < piecesLeft; i++) {
-      newRow[i] = true;
-    }
-    this.position[row] = newRow;
+    this.position[row] = Array(piecesLeft).fill(true);
   }
 
   createRow(pieces) {
-    let list = [];
-    for (let i = 0; i < pieces; i++) {
-      list[i] = true;
-    }
-    return list;
+    return Array(pieces).fill(true);
   }
 
   initialBoard() {

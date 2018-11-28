@@ -1,6 +1,6 @@
 class MinimaxNode {
 
-  // static get DEPTH() { return 7; }
+  static get DEPTH() { return 7; }
 
   constructor(board) {
     this.board = board;
@@ -11,7 +11,7 @@ class MinimaxNode {
   buildTree(board, depth) {
     let rootNode = new MinimaxNode(board);
 
-    if (depth > 7) {
+    if (depth > MinimaxNode.DEPTH) {
       return rootNode;
     }
 

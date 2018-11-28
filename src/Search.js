@@ -7,7 +7,7 @@ class Search {
   }
 
   findMove() {
-    console.log("Searching...");
+    console.log('Searching...');
     return new Minimax(this.board).search();
   }
 

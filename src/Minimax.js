@@ -7,14 +7,14 @@ class Minimax {
   }
 
   search() {
-    console.log("Building tree...");
+    console.log('Building tree...');
     let rootNode = new MinimaxNode(this.board).buildTree(this.board, 0);
 
-    console.log("Evaluating positions...");
-    rootNode = this.assignNodeValues(rootNode, "max");
+    console.log('Evaluating positions...');
+    rootNode = this.assignNodeValues(rootNode, 'max');
 
-    console.log("Making best move...");
-    let move = this.bestNextMove(rootNode, "max")[1];
+    console.log('Making best move...');
+    let move = this.bestNextMove(rootNode, 'max')[1];
     return move.getBoard();
   }
 
@@ -41,7 +41,7 @@ class Minimax {
     let bestMove = node.getMoves()[0];
 
     for (let move of node.getMoves()) {
-      if (minMax === "max") {
+      if (minMax === 'max') {
         if (move.getValue() > bestMoveValue) {
           bestMoveValue = move.getValue();
           bestMove = move;
@@ -59,7 +59,7 @@ class Minimax {
   }
 
   flipMaxMin(maxMin) {
-    return maxMin === "max" ? "min" : "max";
+    return maxMin === 'max' ? 'min' : 'max';
   }
 
   valueOfWin(maxMin) {
