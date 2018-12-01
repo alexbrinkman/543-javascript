@@ -1,7 +1,7 @@
 class Board {
 
   constructor(position) {
-    this.position = position == null ? this.initialBoard() : position;
+    this.position = position ? position : this.initialBoard();
   }
 
   move(row, num) {

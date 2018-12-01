@@ -1,6 +1,6 @@
 class MinimaxNode {
 
-  static get DEPTH() { return 7; }
+  static get DEPTH() { return 10; }
 
   constructor(board) {
     this.board = board;
