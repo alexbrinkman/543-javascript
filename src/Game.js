@@ -1,5 +1,6 @@
 import Board from './Board.js';
-import Search from './Search.js';
+import Minimax from './Minimax.js';
+import Result from './Result.js';
 
 class Game {
 
@@ -8,22 +9,19 @@ class Game {
   }
 
   run() {
-    console.log(this.board.toString());
     if (this.board.winner()) {
-      console.log('Human wins!');
-      return this.board;
+      return new Result(this.board, true, 'You win!');
     }
 
     this.makeMove();
-    console.log(this.board.toString());
     if (this.board.winner()) {
-      console.log('Computer wins!');
+      return new Result(this.board, true, 'Computer wins.');
     }
-    return this.board;
+    return new Result(this.board, false, '');
   }
 
   makeMove() {
-    this.board = new Search(this.board).findMove();
+    this.board = new Minimax(this.board).search();
   }
 
 }

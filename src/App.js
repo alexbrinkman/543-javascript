@@ -10,9 +10,10 @@ class App extends Component {
       position: [
         [true, true, true],
         [true, true, true, true],
-        [true, true, true, true, true],
-        [true],
-      ]
+        [true, true, true, true, true]
+      ],
+      gameOver: false,
+      message: ''
     };
 
     this.togglePosition = this.togglePosition.bind(this);
@@ -20,16 +21,23 @@ class App extends Component {
   }
 
   togglePosition(row, number) {
+    // TODO: toggle back on any other row that happened to be clicked too.
     let newPosition = Object.assign([], this.state.position);
     newPosition[row][number] = newPosition[row][number] ? false : true
-    this.setState({position: newPosition});
+    this.setState({ position: newPosition, gameOver: false, message: '' });
   }
 
   makeMove() {
     let newPosition = this.removeFalses();
-    this.setState({position: newPosition});
-    let computerMove = new Game(newPosition).run();
-    this.setState({position: computerMove.position});
+    this.setState({ position: newPosition, gameOver: false, message: '' });
+    let result = new Game(newPosition).run();
+    this.setState(
+      { position: result.getBoard().position,
+        gameOver: result.getGameOver(),
+        message: result.getMessage()
+      }
+    );
+
   }
 
   displayBoard() {
@@ -48,7 +56,8 @@ class App extends Component {
     return (
       <div className="App">
         {this.displayBoard()}
-        <button onClick={this.makeMove}>Move</button>
+        <button onClick={this.makeMove} disabled={this.state.gameOver}>Move</button>
+        <div>{this.state.message}</div>
       </div>
     )
   }
