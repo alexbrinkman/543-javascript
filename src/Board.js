@@ -1,7 +1,7 @@
 class Board {
 
   constructor(position) {
-    this.position = position ? position : this.initialBoard();
+    this.position = position;
   }
 
   move(row, num) {
@@ -44,6 +44,7 @@ class Board {
     return str;
   }
 
+  // TODO: this should move to the UI layer.
   validateMove(row, num) {
     if (row < 1 || row > this.position.length) {
       throw new TypeError('Invalid row: please enter 1-' + this.position.length + '.');
@@ -91,15 +92,6 @@ class Board {
 
   createRow(pieces) {
     return Array(pieces).fill(true);
-  }
-
-  initialBoard() {
-    let board = [
-      [true, true, true],
-      [true, true, true, true],
-      [true, true, true, true, true]
-    ];
-    return board;
   }
 
 }

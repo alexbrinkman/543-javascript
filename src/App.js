@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import Game from './Game.js';
 import Piece from './Piece.js';
 
@@ -12,6 +11,7 @@ class App extends Component {
         [true, true, true],
         [true, true, true, true],
         [true, true, true, true, true],
+        [true],
       ]
     };
 
@@ -26,7 +26,7 @@ class App extends Component {
   }
 
   makeMove() {
-    let newPosition = this.filterFalses();
+    let newPosition = this.removeFalses();
     this.setState({position: newPosition});
     let computerMove = new Game(newPosition).run();
     this.setState({position: computerMove.position});
@@ -37,9 +37,9 @@ class App extends Component {
     for (let i = 0; i < this.state.position.length; i++) {
       let pieces = []
       for (let j = 0; j < this.state.position[i].length; j++) {
-        pieces.push(<Piece value={this.state.position[i][j]} handler={this.togglePosition} row={i} number={j} />)
+        pieces.push(<Piece key={j} value={this.state.position[i][j]} handler={this.togglePosition} row={i} number={j} />)
       }
-      board.push(<div key={i}>{pieces}</div>)
+      board.push(<div className="row" key={i}>{pieces}</div>)
     }
     return board;
   }
@@ -48,15 +48,15 @@ class App extends Component {
     return (
       <div className="App">
         {this.displayBoard()}
-        <button onClick={this.makeMove}>Remove Selected Pieces</button>
+        <button onClick={this.makeMove}>Move</button>
       </div>
     )
   }
 
-  filterFalses() {
+  removeFalses() {
     let newPosition = []
     for (let i = 0; i < this.state.position.length; i++) {
-      let row = this.state.position[i].filter(Boolean); // remove falses
+      let row = this.state.position[i].filter(Boolean);
       newPosition.push(row);
     }
     return newPosition;
