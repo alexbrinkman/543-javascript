@@ -44,25 +44,6 @@ class Board {
     return str;
   }
 
-  // TODO: this should move to the UI layer.
-  validateMove(row, num) {
-    if (row < 1 || row > this.position.length) {
-      throw new TypeError('Invalid row: please enter 1-' + this.position.length + '.');
-    }
-
-    if (num < 1) {
-      throw new TypeError('Invalid number: please enter at least 1 piece.');
-    }
-
-    if (num > this.piecesLeftInRow(row - 1)) {
-      throw new TypeError('Invalid number: please enter no more than the number remaining in the row.');
-    }
-
-    if (num >= this.totalPiecesLeft()) {
-      throw new TypeError('Invalid number: you may not take all remaining pieces.');
-    }
-  }
-
   piecesLeftInRow(row) {
     let boardRow = this.position[row];
     return boardRow.filter(e => e).length;
