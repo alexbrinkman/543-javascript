@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Game from './Game.js';
-import Piece from './Piece.js';
+import BoardDisplay from './BoardDisplay.js';
 
 class App extends Component {
 
@@ -21,13 +21,9 @@ class App extends Component {
   }
 
   render() {
-    let buttonClass = this.state.gameOver ? 'hidden' : '';
     return (
-      <div className="App">
-        {this.displayBoard()}
-        <button onClick={this.makeMove} disabled={this.state.gameOver} className={buttonClass}>Move</button>
-        <div className="message">{this.state.message}</div>
-      </div>
+      <BoardDisplay position={this.state.position} gameOver={this.state.gameOver} message={this.state.message}
+        makeMoveHandler={this.makeMove} togglePositionHandler={this.togglePosition} />
     )
   }
 
@@ -60,18 +56,6 @@ class App extends Component {
       this.setState({ position: this.state.position, gameOver: false, message: e.message });
     }
 
-  }
-
-  displayBoard() {
-    let board = []
-    for (let i = 0; i < this.state.position.length; i++) {
-      let pieces = []
-      for (let j = 0; j < this.state.position[i].length; j++) {
-        pieces.push(<Piece key={j} value={this.state.position[i][j]} handler={this.togglePosition} row={i} number={j} />)
-      }
-      board.push(<div className="row" key={i}>{pieces}</div>)
-    }
-    return board;
   }
 
   removeFalses() {
