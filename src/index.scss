@@ -15,8 +15,7 @@ body {
 }
 
 #root {
-  padding-left: 33%;
-  margin-bottom: 75px;
+  text-align: center;
 }
 
 .row {
@@ -39,6 +38,16 @@ body {
   text-align: center;
 }
 
+.message {
+  margin-top: 2rem;
+  color: $dark-blue;
+  font-size: 1.4rem;
+}
+
+.hidden {
+  display: none;
+}
+
 button {
   transition: all 0.3s ease-in;
   border: 1px solid $dark-blue;
@@ -49,17 +58,24 @@ button {
   height: 3rem;
   width: 10rem;
   text-transform: uppercase;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 10px;
-  margin-right: 1rem;
-  margin-left: 1rem;
+  margin-top: 4rem;
+
+  &[disabled] {
+    color: $light-gray;
+    border: 1px solid $light-gray;
+  }
 }
 
 button:hover {
   color: white;
   border: 1px solid white;
   background-color: $dark-blue;
+
+  &[disabled] {
+    color: $light-gray;
+    border: 1px solid $light-gray;
+    background-color: white;
+  }
 }
 
 

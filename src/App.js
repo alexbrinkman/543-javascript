@@ -53,11 +53,12 @@ class App extends Component {
   }
 
   render() {
+    let buttonClass = this.state.gameOver ? 'hidden' : '';
     return (
       <div className="App">
         {this.displayBoard()}
-        <button onClick={this.makeMove} disabled={this.state.gameOver}>Move</button>
-        <div>{this.state.message}</div>
+        <button onClick={this.makeMove} disabled={this.state.gameOver} className={buttonClass}>Move</button>
+        <div className="message">{this.state.message}</div>
       </div>
     )
   }
