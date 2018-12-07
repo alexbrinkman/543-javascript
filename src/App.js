@@ -32,10 +32,10 @@ class App extends Component {
       this.validateSelection(row, number);
       let newPosition = Object.assign([], this.state.position);
       newPosition[row][number] = newPosition[row][number] ? false : true
-      this.setState({ position: newPosition, gameOver: false, message: '' });
+      this.setState({ position: newPosition, message: '' });
     }
     catch(e) {
-      this.setState({ position: this.state.position, gameOver: false, message: e.message });
+      this.setState({ position: this.state.position, message: e.message });
     }
   }
 
@@ -43,7 +43,7 @@ class App extends Component {
     try {
       this.validateMove();
       let newPosition = this.removeFalses();
-      this.setState({ position: newPosition, gameOver: false, message: '' });
+      this.setState({ position: newPosition, message: '' });
       let result = new Game(newPosition).run();
       this.setState(
         { position: result.getBoard().position,
@@ -53,7 +53,7 @@ class App extends Component {
       );
     }
     catch(e) {
-      this.setState({ position: this.state.position, gameOver: false, message: e.message });
+      this.setState({ position: this.state.position, message: e.message });
     }
 
   }
