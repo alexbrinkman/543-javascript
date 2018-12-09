@@ -2,7 +2,7 @@
   "name": "543-javascript",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://www.enlightenedpixel.com/apps/543",
+  "homepage": "https://www.enlightenedpixel.com/apps/543",
   "dependencies": {
     "node-sass": "^4.10.0",
     "prop-types": "^15.6.2",

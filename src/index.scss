@@ -2,13 +2,15 @@ $light-green: #b0b7ac;
 $dark-blue: #435662;
 $green: #b9c899;
 $light-gray: #999999;
-$background: #eeeeee;
+$white: #efefef;
+$background: $dark-blue;
 
 * {
   box-sizing: border-box;
 }
 
 body {
+  font-family: "Open Sans", Verdana, Arial, Helvetica, sans-serif;
   background: $background;
   margin: 0 auto;
   padding: 2em;
@@ -16,6 +18,7 @@ body {
 
 #root {
   text-align: center;
+  margin-top: 3rem;
 }
 
 .row {
@@ -23,7 +26,7 @@ body {
 }
 
 .piece {
-  fill: $dark-blue;
+  fill: $white;
 }
 
 .piece.selected {
@@ -40,12 +43,24 @@ body {
 
 .message {
   margin-top: 2rem;
-  color: $dark-blue;
+  color: $white;
   font-size: 1.4rem;
 }
 
 .hidden {
   display: none;
+}
+
+footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: .9em;
+  color: $white;
+}
+
+.logo-small {
+  width: 50px;
+  height: 50px;
 }
 
 button {
@@ -67,22 +82,41 @@ button {
 }
 
 button:hover {
-  color: white;
-  border: 1px solid white;
+  color: $white;
+  border: 1px solid $white;
   background-color: $dark-blue;
 
   &[disabled] {
     color: $light-gray;
     border: 1px solid $light-gray;
-    background-color: white;
+    background-color: $white;
   }
 }
 
+@media only screen and (max-width: 780px) {
+  .piece {
+    width: 75px;
+    height: 75px;
+  }
+}
 
 @media only screen and (max-width: 580px) {
-
-  body {
-    padding: 0 1em;
+  .piece {
+    width: 60px;
+    height: 60px;
   }
+}
 
+@media only screen and (max-width: 480px) {
+  .piece {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media only screen and (max-width: 290px) {
+  .piece {
+    width: 35px;
+    height: 35px;
+  }
 }
