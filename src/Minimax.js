@@ -2,13 +2,15 @@ import MinimaxNode from './MinimaxNode.js';
 
 class Minimax {
 
+  static get DEPTH() { return 8; }
+
   constructor(board) {
     this.board = board;
   }
 
   search() {
     console.log('Building tree...');
-    let rootNode = new MinimaxNode(this.board).buildTree(this.board, 0);
+    let rootNode = this.buildTree(this.board, 0);
 
     console.log('Evaluating positions...');
     rootNode = this.assignNodeValues(rootNode, 'max');
@@ -16,6 +18,20 @@ class Minimax {
     console.log('Making best move...');
     let move = this.bestNextMove(rootNode, 'max')[1];
     return move.getBoard();
+  }
+
+  buildTree(board, depth) {
+    let rootNode = new MinimaxNode(board);
+
+    if (depth > MinimaxNode.DEPTH) {
+      return rootNode;
+    }
+
+    for (let b of board.availableMoves()) {
+      rootNode.getMoves().push(this.buildTree(b, depth + 1));
+    }
+
+    return rootNode;
   }
 
   assignNodeValues(rootNode, maxMin) {
