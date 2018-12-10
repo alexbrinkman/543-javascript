@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Game from './Game.js';
 import BoardDisplay from './BoardDisplay.js';
 
-class App extends Component {
+class App extends React.Component {
 
   state = {
     position: [

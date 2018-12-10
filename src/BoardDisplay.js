@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Piece from './Piece.js';
 
-class BoardDisplay extends Component {
+class BoardDisplay extends React.Component {
 
   render() {
     return (
