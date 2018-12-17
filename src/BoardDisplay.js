@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Piece from './Piece.js';
 
 class BoardDisplay extends React.Component {
@@ -14,6 +14,7 @@ class BoardDisplay extends React.Component {
           Move
         </button>
         <div className="message">{this.props.message}</div>
+        {this.displayRestart()}
       </div>
     );
   }
@@ -40,6 +41,14 @@ class BoardDisplay extends React.Component {
       );
     }
     return board;
+  }
+
+  displayRestart() {
+    if (this.props.gameOver) {
+      return (
+        <button onClick={this.props.restartGameHandler}>Restart Game</button>
+      );
+    }
   }
 
   buttonClass() {

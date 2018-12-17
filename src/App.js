@@ -1,22 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Game from './Game.js';
 import BoardDisplay from './BoardDisplay.js';
 
 class App extends React.Component {
-  state = {
-    position: [
-      [true, true, true],
-      [true, true, true, true],
-      [true, true, true, true, true]
-    ],
-    gameOver: false,
-    message: ''
-  };
+  state = this.initialState();
 
   constructor(props) {
     super(props);
     this.togglePosition = this.togglePosition.bind(this);
     this.makeMove = this.makeMove.bind(this);
+    this.restartGame = this.restartGame.bind(this);
   }
 
   render() {
@@ -27,6 +20,7 @@ class App extends React.Component {
         message={this.state.message}
         makeMoveHandler={this.makeMove}
         togglePositionHandler={this.togglePosition}
+        restartGameHandler={this.restartGame}
       />
     );
   }
@@ -56,6 +50,22 @@ class App extends React.Component {
     } catch (e) {
       this.setState({ position: this.state.position, message: e.message });
     }
+  }
+
+  restartGame() {
+    this.setState(this.initialState());
+  }
+
+  initialState() {
+    return {
+      position: [
+        [true, true, true],
+        [true, true, true, true],
+        [true, true, true, true, true]
+      ],
+      gameOver: false,
+      message: ''
+    };
   }
 
   removeFalses() {
