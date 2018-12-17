@@ -1,8 +1,9 @@
 import MinimaxNode from './MinimaxNode.js';
 
 class Minimax {
-
-  static get DEPTH() { return 8; }
+  static get DEPTH() {
+    return 8;
+  }
 
   constructor(board) {
     this.board = board;
@@ -38,8 +39,7 @@ class Minimax {
     for (let node of rootNode.getMoves()) {
       if (node.getBoard().winner()) {
         node.setValue(this.valueOfWin(maxMin));
-      }
-      else {
+      } else {
         this.assignNodeValues(node, this.flipMaxMin(maxMin));
         node.setValue(this.bestNextMove(node, this.flipMaxMin(maxMin))[0]);
       }
@@ -62,8 +62,7 @@ class Minimax {
           bestMoveValue = move.getValue();
           bestMove = move;
         }
-      }
-      else {
+      } else {
         if (move.getValue() < bestMoveValue) {
           bestMoveValue = move.getValue();
           bestMove = move;
@@ -79,9 +78,8 @@ class Minimax {
   }
 
   valueOfWin(maxMin) {
-    return maxMin === "max" ? 1 : -1;
+    return maxMin === 'max' ? 1 : -1;
   }
-
 }
 
 export default Minimax;

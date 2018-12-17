@@ -1,5 +1,4 @@
 class Result {
-
   constructor(board, gameOver, message) {
     this.board = board;
     this.gameOver = gameOver;
@@ -17,7 +16,6 @@ class Result {
   getMessage() {
     return this.message;
   }
-
 }
 
 export default Result;

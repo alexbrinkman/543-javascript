@@ -1,5 +1,4 @@
 class Board {
-
   constructor(position) {
     this.position = position;
   }
@@ -17,9 +16,9 @@ class Board {
     // One move for each piece of each row, unless there are only pieces left in one row.
     let boards = [];
     let startAt = this.oneRowLeft() ? 1 : 0;
-    for(let i = 0; i < this.position.length; i++) {
+    for (let i = 0; i < this.position.length; i++) {
       let row = this.position[i];
-      for(let j = startAt; j < row.length; j++) {
+      for (let j = startAt; j < row.length; j++) {
         let newPosition = Object.assign([], this.position); // Clone to new array.
         newPosition[i] = this.createRow(j);
         boards.push(new Board(newPosition));
@@ -74,7 +73,6 @@ class Board {
   createRow(pieces) {
     return Array(pieces).fill(true);
   }
-
 }
 
 export default Board;

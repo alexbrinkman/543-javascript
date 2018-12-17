@@ -3,7 +3,6 @@ import Minimax from './Minimax.js';
 import Result from './Result.js';
 
 class Game {
-
   constructor(position) {
     this.board = new Board(position);
   }
@@ -23,7 +22,6 @@ class Game {
   makeMove() {
     this.board = new Minimax(this.board).search();
   }
-
 }
 
 export default Game;

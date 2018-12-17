@@ -3,7 +3,6 @@ import Game from './Game.js';
 import BoardDisplay from './BoardDisplay.js';
 
 class App extends React.Component {
-
   state = {
     position: [
       [true, true, true],
@@ -22,19 +21,23 @@ class App extends React.Component {
 
   render() {
     return (
-      <BoardDisplay position={this.state.position} gameOver={this.state.gameOver} message={this.state.message}
-        makeMoveHandler={this.makeMove} togglePositionHandler={this.togglePosition} />
-    )
+      <BoardDisplay
+        position={this.state.position}
+        gameOver={this.state.gameOver}
+        message={this.state.message}
+        makeMoveHandler={this.makeMove}
+        togglePositionHandler={this.togglePosition}
+      />
+    );
   }
 
   togglePosition(row, number) {
     try {
       this.validateSelection(row, number);
       let newPosition = Object.assign([], this.state.position);
-      newPosition[row][number] = newPosition[row][number] ? false : true
+      newPosition[row][number] = newPosition[row][number] ? false : true;
       this.setState({ position: newPosition, message: '' });
-    }
-    catch(e) {
+    } catch (e) {
       this.setState({ position: this.state.position, message: e.message });
     }
   }
@@ -45,21 +48,18 @@ class App extends React.Component {
       let newPosition = this.removeFalses();
       this.setState({ position: newPosition, message: '' });
       let result = new Game(newPosition).run();
-      this.setState(
-        { position: result.getBoard().position,
-          gameOver: result.getGameOver(),
-          message: result.getMessage()
-        }
-      );
-    }
-    catch(e) {
+      this.setState({
+        position: result.getBoard().position,
+        gameOver: result.getGameOver(),
+        message: result.getMessage()
+      });
+    } catch (e) {
       this.setState({ position: this.state.position, message: e.message });
     }
-
   }
 
   removeFalses() {
-    let newPosition = []
+    let newPosition = [];
     for (let i = 0; i < this.state.position.length; i++) {
       let row = this.state.position[i].filter(Boolean);
       newPosition.push(row);
@@ -69,7 +69,9 @@ class App extends React.Component {
 
   validateSelection(row, number) {
     for (let i = 0; i < this.state.position.length; i++) {
-      if (i === row) { continue; }
+      if (i === row) {
+        continue;
+      }
       if (this.state.position[i].filter(e => !e).length > 0) {
         throw new TypeError('You may only take pieces from one row.');
       }
@@ -82,14 +84,13 @@ class App extends React.Component {
     });
 
     if (flatPosition.filter(e => e).length === 0) {
-      throw new TypeError('You may not take all remaining pieces.')
+      throw new TypeError('You may not take all remaining pieces.');
     }
 
     if (flatPosition.filter(e => !e).length === 0) {
-      throw new TypeError('You must select at least one piece.')
+      throw new TypeError('You must select at least one piece.');
     }
   }
-
 }
 
 export default App;

@@ -1,5 +1,4 @@
 class MinimaxNode {
-
   constructor(board) {
     this.board = board;
     this.moves = [];
@@ -29,7 +28,6 @@ class MinimaxNode {
   setValue(value) {
     this.value = value;
   }
-
 }
 
 export default MinimaxNode;
