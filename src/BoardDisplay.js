@@ -1,5 +1,6 @@
 import React from 'react';
 import Piece from './Piece.js';
+import PropTypes from 'prop-types';
 
 class BoardDisplay extends React.Component {
   render() {
@@ -55,5 +56,14 @@ class BoardDisplay extends React.Component {
     return this.props.gameOver ? 'hidden' : '';
   }
 }
+
+BoardDisplay.propTypes = {
+  position: PropTypes.array.isRequired,
+  gameOver: PropTypes.bool.isRequired,
+  message: PropTypes.string,
+  makeMoveHandler: PropTypes.func.isRequired,
+  togglePositionHandler: PropTypes.func.isRequired,
+  restartGameHandler: PropTypes.func.isRequired
+};
 
 export default BoardDisplay;

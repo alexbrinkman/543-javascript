@@ -30,8 +30,10 @@ class Piece extends React.Component {
 }
 
 Piece.propTypes = {
-  row: PropTypes.number,
-  number: PropTypes.number
+  row: PropTypes.number.isRequired,
+  number: PropTypes.number.isRequired,
+  value: PropTypes.bool.isRequired,
+  handler: PropTypes.func.isRequired
 };
 
 export default Piece;
